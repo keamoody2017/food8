@@ -51,10 +51,13 @@ h2nav {
 }
 
 #semenuher {
-    font-family: groteskSemiBold;
+    font-family: groteskBold;
     text-align: center;
     color: #4190A9;
-    font-size: 16px;
+    font-size: 20px;
+    border: solid;
+    padding: 10px;
+    background-color: antiquewhite;
 }
 
 #nyheder {
