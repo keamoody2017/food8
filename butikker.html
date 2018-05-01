@@ -13,6 +13,9 @@
     <a href="start.html">
         <div id="logo" class=""></div>
     </a>
+
+    <h2>Specialbutikker</h2>
+
     <section>
 
     </section>
@@ -65,6 +68,8 @@
         </div>
     </nav>
 
+
+
     <section>
     </section>
 
@@ -109,7 +114,9 @@
         }
 
         function visSpecialbutikker() {
-            Specialbutikker.sort(function(a, b){return 0.5 - Math.random()});
+            Specialbutikker.sort(function(a, b) {
+                return 0.5 - Math.random()
+            });
             Specialbutikker.forEach(Specialbutik => {
                 console.log(Specialbutik)
                 let klon = template.cloneNode(true).content;
@@ -127,6 +134,7 @@
             });
 
         }
+
     </script>
 
 </body>

@@ -84,7 +84,7 @@ h2nav {
 
 
 #nyhedsbrev {
-    background-image: url(nyhedsbrev.svg);
+    background-image: url(img/nyhedsbrev.png);
     background-repeat: no-repeat;
     background-size: 100%;
     height: 50vw;
@@ -381,7 +381,6 @@ input[type=text]:focus,
 
 /* Set a style for all buttons */
 
-
 button:hover {
     opacity: 10;
 }
@@ -434,9 +433,7 @@ button:hover {
     overflow: hidden;
 }
 
-#galleri_container img {
-
-}
+#galleri_container img {}
 
 .w3-display-left {
     position: absolute;
