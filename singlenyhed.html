@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Om Food8.dk</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="logo" class="">
+
+    </div>
+
+
+    <nav role="navigation">
+        <div id="menuToggle">
+
+            <input type="checkbox" />
+
+            <span class="first"></span>
+            <span></span>
+            <span></span>
+
+            <ul id="menu">
+                <a href="restauranter.html">
+                    <li>
+                        <h2>Restauranter</h2>
+                    </li>
+                </a>
+                <a href="butikker.html">
+                    <li>
+                        <h2>Specialbutikker</h2>
+                    </li>
+                </a>
+
+                <a href="nyheder.html">
+                    <li>
+                        <h2>Nyheder</h2>
+                    </li>
+                </a>
+
+                <a href="om.html">
+                    <li>
+                        <h2>Om</h2>
+                    </li>
+                </a>
+                <a href="kort.html">
+                    <li>
+                        <h2>Kort</h2>
+                    </li>
+                </a>
+
+                <a href="nyhedsbrev.html">
+                    <li>
+                        <h2 id="brev">Tilmeld Nyhedsbrev</h2>
+                    </li>
+                </a>
+
+            </ul>
+        </div>
+    </nav>
+    <!--Navigation Slut-->
+
+
+    <!--Template til nyheder-->
+
+
+
+    <section>
+        <article>
+            <h2 data-title></h2>
+            <img data-image src="" alt="">
+            <p data-content></p>
+        </article>
+    </section>
+
+
+    <div id="nyhedsbrev"></div>
+
+
+
+    <script>
+        // Nyheder //
+
+        let urlParams = new URLSearchParams(window.location.search);
+        let urlID = urlParams.get('id');
+
+        let jsonUrl = "http://ffeminister.dk/kea/2sem/food8/wp/wp-json/wp/v2/nyheder";
+        let nyheder = [];
+
+
+        document.addEventListener("DOMContentLoaded", hentJson);
+
+        async function hentJson() {
+            let dataJson = await fetch(jsonUrl);
+            nyheder = await dataJson.json();
+            console.log(nyheder);
+            visNyheder();
+        }
+
+        function visNyheder() {
+            nyheder.forEach(nyhed => {
+
+                if (nyhed.id == urlID) {
+                    console.log(nyhed.id, urlID);
+                    document.querySelector("[data-title]").textContent = nyhed.title.rendered;
+                    document.querySelector("[data-content]").innerHTML = nyhed.content.rendered;
+                    document.querySelector("[data-image]").src = nyhed.acf.billede.url;
+
+                }
+            });
+        }
+    </script>
+
+    <footer>
+        <p>Footer</p>
+    </footer>
+</body>
+
+</html>

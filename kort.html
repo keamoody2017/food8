@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Om Food8.dk</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="logo" class="">
+
+    </div>
+
+
+    <nav role="navigation">
+        <div id="menuToggle">
+
+            <input type="checkbox" />
+
+            <span class="first"></span>
+            <span></span>
+            <span></span>
+
+            <ul id="menu">
+                <a href="restauranter.html">
+                    <li>
+                        <h2>Restauranter</h2>
+                    </li>
+                </a>
+                <a href="butikker.html">
+                    <li>
+                        <h2>Specialbutikker</h2>
+                    </li>
+                </a>
+
+                <a href="nyheder.html">
+                    <li>
+                        <h2>Nyheder</h2>
+                    </li>
+                </a>
+
+                <a href="om.html">
+                    <li>
+                        <h2>Om</h2>
+                    </li>
+                </a>
+                <a href="kort.html">
+                    <li>
+                        <h2>Kort</h2>
+                    </li>
+                </a>
+
+                <a href="nyhedsbrev.html">
+                    <li>
+                        <h2 id="brev">Tilmeld Nyhedsbrev</h2>
+                    </li>
+                </a>
+
+            </ul>
+        </div>
+    </nav>
+
+    <div id="map"></div>
+    <!-- Replace the value of the key parameter with your own API key. -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0Ozk0ov2k_1CXrjRfCwt8y_VUaWTQcso&callback=initMap">
+    </script>
+
+
+    <script>
+        function initMap() {
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 12,
+                center: {
+                    lat: 55.688250,
+                    lng: 12.561815
+                },
+
+                styles: [{
+                        "elementType": "labels",
+                        "stylers": [{
+                            "visibility": "off"
+                        }]
+                    },
+                    {
+                        "featureType": "administrative.land_parcel",
+                        "stylers": [{
+                            "visibility": "off"
+                        }]
+                    },
+                    {
+                        "featureType": "administrative.neighborhood",
+                        "stylers": [{
+                            "visibility": "off"
+                        }]
+                    },
+                    {
+                        "featureType": "landscape.man_made",
+                        "elementType": "geometry.fill",
+                        "stylers": [{
+                            "color": "#90dae2"
+                        }]
+                    },
+                    {
+                        "featureType": "landscape.natural",
+                        "elementType": "geometry.fill",
+                        "stylers": [{
+                            "color": "#a7dfcf"
+                        }]
+                    },
+                    {
+                        "featureType": "landscape.natural.landcover",
+                        "elementType": "geometry.fill",
+                        "stylers": [{
+                            "color": "#7fdcbf"
+                        }]
+                    },
+                    {
+                        "featureType": "landscape.natural.terrain",
+                        "elementType": "geometry.fill",
+                        "stylers": [{
+                            "color": "#90c5dc"
+                        }]
+                    },
+                    {
+                        "featureType": "poi",
+                        "elementType": "geometry.fill",
+                        "stylers": [{
+                            "color": "#8eedd2"
+                        }]
+                    },
+                    {
+                        "featureType": "poi",
+                        "elementType": "labels.text",
+                        "stylers": [{
+                            "visibility": "off"
+                        }]
+                    },
+                    {
+                        "featureType": "poi.business",
+                        "stylers": [{
+                            "visibility": "off"
+                        }]
+                    },
+                    {
+                        "featureType": "road",
+                        "elementType": "geometry.fill",
+                        "stylers": [{
+                            "color": "#f3f4ff"
+                        }]
+                    },
+                    {
+                        "featureType": "road",
+                        "elementType": "labels.icon",
+                        "stylers": [{
+                            "visibility": "off"
+                        }]
+                    },
+                    {
+                        "featureType": "road.highway",
+                        "elementType": "geometry.fill",
+                        "stylers": [{
+                            "color": "#f3f4ff"
+                        }]
+                    },
+                    {
+                        "featureType": "road.highway",
+                        "elementType": "geometry.stroke",
+                        "stylers": [{
+                            "color": "#f3f4ff"
+                        }]
+                    },
+                    {
+                        "featureType": "transit",
+                        "stylers": [{
+                            "visibility": "off"
+                        }]
+                    },
+                    {
+                        "featureType": "water",
+                        "elementType": "geometry.fill",
+                        "stylers": [{
+                            "color": "#e0eaee"
+                        }]
+                    }
+                ]
+
+            });
+
+
+
+
+
+
+            // Create an array of alphabetical characters used to label the markers.
+            var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+            // Add some markers to the map.
+            // Note: The code uses the JavaScript Array.prototype.map() method to
+            // create an array of markers based on a given "locations" array.
+            // The map() method here has nothing to do with the Google Maps API.
+            var markers = locations.map(function(location, i) {
+                return new google.maps.Marker({
+                    position: location,
+                    label: labels[i % labels.length]
+                });
+            });
+
+            // Add a marker clusterer to manage the markers.
+            var markerCluster = new MarkerClusterer(map, markers, {
+                imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+            });
+        }
+        var locations = [{
+                lat: 55.669064,
+                lng: 12.558715
+            },
+            {
+                lat: 55.683928,
+                lng: 12.570082
+            },
+            {
+                lat: 55.669184,
+                lng: 12.560794
+            },
+            {
+                lat: 55.695038,
+                lng: 12.569340
+            },
+            {
+                lat: 55.683690,
+                lng: 12.569766
+            },
+            {
+                lat: 55.666611,
+                lng: 12.579911
+            },
+            {
+                lat: 55.667643,
+                lng: 12.558010
+            },
+            {
+                lat: 55.688250,
+                lng: 12.561815
+            }
+        ];
+    </script>
+    <style>
+        #map {
+            height: 100%;
+        }
+
+        /* Optional: Makes the sample page fill the window. */
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="logo" class="">
+
+    </div>
+
+
+    <nav role="navigation">
+        <div id="menuToggle">
+
+            <input type="checkbox" />
+
+            <span class="first"></span>
+            <span></span>
+            <span></span>
+
+            <ul id="menu">
+                <a href="restauranter.html">
+                    <li>
+                        <h2>Restauranter</h2>
+                    </li>
+                </a>
+                <a href="butikker.html">
+                    <li>
+                        <h2>Specialbutikker</h2>
+                    </li>
+                </a>
+
+                <a href="nyheder.html">
+                    <li>
+                        <h2>Nyheder</h2>
+                    </li>
+                </a>
+
+                <a href="om.html">
+                    <li>
+                        <h2>Om</h2>
+                    </li>
+                </a>
+                <a href="kort.html">
+                    <li>
+                        <h2>Kort</h2>
+                    </li>
+                </a>
+
+                <a href="nyhedsbrev.html">
+                    <li>
+                        <h2 id="brev">Tilmeld Nyhedsbrev</h2>
+                    </li>
+                </a>
+
+            </ul>
+        </div>
+    </nav>
+
+    <section id="singlebutik_container">
+        <article>
+            <h2 data-header>---</h2>
+            <img data-image src="---" alt="---">
+            <a href="" data-menu></a>
+            <p data-description>---</p>
+            <p data-aabningstider>---</p>
+            <p data-kontakt>---</p>
+            <p data-adresse>---</p>
+            <p data-kontrolrapport>---</p>
+            <img data-galleri src="" alt="">
+        </article>
+    </section>
+
+    <div id="nyhedsbrev"></div>
+
+    <footer></footer>
+
+    <script>
+        let urlParams = new URLSearchParams(window.location.search);
+        let urlID = urlParams.get('id');
+
+        let jSonUrl = "http://ffeminister.dk/kea/2sem/food8/wp/wp-json/wp/v2/specialbutik";
+        let specialButikker = [];
+
+        document.addEventListener("DOMContentLoaded", hentJson);
+
+
+
+        async function hentJson() {
+            let jsonData = await fetch(jSonUrl);
+            specialButikker = await jsonData.json();
+            console.log(specialButikker);
+            visSpecialbutikker();
+
+        }
+
+        function visSpecialbutikker() {
+            specialButikker.forEach(specialButik => {
+
+                if (specialButik.id == urlID) {
+                    console.log(specialButik.id, urlID);
+
+
+                    document.querySelector("[data-header]").textContent = specialButik.title.rendered;
+
+                    document.querySelector("[data-image]").src = specialButik.acf.coverbillede.url;
+                    //                klon.querySelector("[data-image]").alt = restaurant.afc.alt;
+                    document.querySelector("[data-galleri]").src = specialButik.acf.galleri.url;
+                    document.querySelector("[data-description]").innerHTML = specialButik.acf.beskrivelse;
+                    document.querySelector("[data-aabningstider]").innerHTML = specialButik.acf.åbningstider;
+                    document.querySelector("[data-kontakt]").innerHTML = specialButik.acf.kontakt;
+                    document.querySelector("[data-adresse]").innerHTML = specialButik.acf.adresse;
+                    document.querySelector("[data-kontrolrapport]").innerHTML = specialButik.acf.kontrolrapport;
+                    document.appendChild(klon);
+                }
+            });
+
+        }
+    </script>
+
+</body>
+
+</html>
+
+

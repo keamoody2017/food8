@@ -1,0 +1,391 @@
+body {
+    background: #F5F0E4;
+    height: 100%;
+    margin: 15px 15px 15px 15px;
+}
+
+
+/*----Text---*/
+
+@font-face {
+    font-family: grotesk;
+    src: url(grotesk/grotesk_regular.otf);
+}
+
+@font-face {
+    font-family: groteskBold;
+    src: url(grotesk/grotesk_bold.otf);
+}
+
+@font-face {
+    font-family: groteskSemiBold;
+    src: url(grotesk/grotesk_semiboldlegacy.otf);
+}
+
+p {
+    font-family: grotesk;
+    font-weight: 100;
+    font-size: 14px;
+
+}
+
+h2 {
+    font-family: groteskSemiBold;
+    font-weight: ;
+    text-align: center;
+    color: #334151;
+    font-size: 20px;
+}
+
+h2nav {
+    text-align: right;
+}
+
+#restaurant {
+
+    font-family: groteskSemiBold;
+    text-align: center;
+    color: #334151;
+    font-size: 20px;
+
+}
+
+#semenuher {
+    font-family: groteskSemiBold;
+    text-align: center;
+    color: #4190A9;
+    font-size: 16px;
+}
+
+#nyheder {
+    font-family: groteskSemiBold;
+    text-align: center;
+    color: #F5F0E4;
+    font-size: 15px;
+    line-height: 0.5;
+    position: absolute;
+    cursor: pointer;
+}
+
+#brev {
+    color: #83D1C0;
+}
+
+
+#nyhedsbrev {
+    background-image: url(nyhedsbrev.svg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 50vw;
+    width: 50vw;
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50vw;
+
+}
+
+h3 {
+    font-family: groteskSemiBold;
+    color: #334151;
+    font-size: 16px;
+    line-height: 1.5;
+
+}
+
+h4 {
+    font-family: groteskSemiBold;
+    color: #334151;
+    font-size: 16px;
+    line-height: 1.4;
+
+}
+
+/*----Kort---*/
+
+#map {
+    height: 100%;
+}
+
+/* Optional: Makes the sample page fill the window. */
+
+/*----Text Slut---*/
+
+#logo {
+    background-image: url(img/logoresize.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 16vw;
+    width: 40%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+    display: block;
+
+}
+
+#book {
+    background-image: url(img/book.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 40vw;
+    width: 50%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+
+}
+
+.nav {
+    font-family: grotesk;
+    text-decoration: none;
+    text-align: center;
+    font-size: 16px;
+
+}
+
+a {
+    text-decoration: none;
+    color: #334151;
+    ;
+}
+
+footer {
+    background-color: none;
+    height: 40px;
+    border-top: 3px solid #2F51A5;
+    border-left: 3px solid #2F51A5;
+    border-bottom: 3px solid #2F51A5;
+    border-right: 3px solid #2F51A5;
+    font-family: grotesk;
+    text-align: center;
+    font-size: 10px;
+    position: static;
+    bottom: 0;
+    width: 95%;
+    margin-right: 15vw;
+}
+
+
+img {
+    height: 70%;
+    width: 100%;
+    cursor: pointer;
+}
+
+
+
+
+
+
+/*----Navigation---*/
+
+#menu a {
+    text-decoration: none;
+    color: black;
+    display: block;
+    vertical-align: middle;
+    font-family: grotesk;
+    transition: color 0.3s ease;
+}
+
+#menu a:hover {
+    color: #f4912d;
+}
+
+#menuToggle {
+    display: block;
+    position: fixed;
+
+    /*Radius*/
+    width: 50px;
+    height: 50px;
+
+    /*Placering*/
+    top: 20px;
+    left: 30px;
+
+    z-index: 1;
+
+    -webkit-user-select: none;
+    user-select: none;
+    background-color: #F5F0E4;
+    border: 2px;
+    border-color: #334151;
+    border-style: solid;
+    border-radius: 50%;
+}
+
+#menuToggle input {
+    display: block;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    cursor: pointer;
+
+    opacity: 0;
+    z-index: 2;
+
+}
+
+#menuToggle span {
+    display: block;
+    width: 33px;
+    height: 4px;
+    margin-left: 8px;
+    margin-bottom: 5px;
+    position: relative;
+
+    background: #334151;
+    border-radius: 10px;
+
+    z-index: 1;
+
+    transform-origin: 4px 0px;
+
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+    background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+    opacity 0.55s ease;
+}
+
+.first {
+    margin-top: 14px;
+}
+
+#menuToggle span:first-child {
+    transform-origin: 0% 0%;
+}
+
+#menuToggle span:nth-last-child(2) {
+    transform-origin: 0% 100%;
+}
+
+
+#menuToggle input:checked ~ span {
+    opacity: 1;
+    transform: rotate(45deg) translate(-2px, -1px);
+    background: #282f43;
+}
+
+
+#menuToggle input:checked ~ span:nth-last-child(3) {
+    opacity: 0;
+    transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+
+#menuToggle input:checked ~ span:nth-last-child(2) {
+    transform: rotate(-45deg) translate(0, -1px);
+}
+
+
+#menu {
+    position: fixed;
+    width: 300px;
+    height: 100vh;
+    margin: -100px 0 0 -50px;
+    padding: 50px;
+    padding-top: 125px;
+    background: #FBFAF2;
+    list-style-type: none;
+    transform-origin: 0% 0%;
+    transform: translate(-100%, 0);
+
+
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+}
+
+#menu li {
+    padding: 10px 0;
+    font-size: 14px;
+}
+
+
+#menuToggle input:checked ~ ul {
+    transform: none;
+}
+
+.testdok {
+    width: 100%;
+    text-align: center;
+}
+
+
+/*Mail box*/
+
+/* Full-width input fields */
+
+input[type=text],
+input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    border-radius: 10px;
+    background: #f1f1f1;
+}
+
+input[type=text]:focus,
+
+
+/* Set a style for all buttons */
+
+button {
+    background-color: #83D1C0;
+    ;
+    color: white;
+    padding: 20px 20px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+button:hover {
+    opacity: 10;
+}
+
+
+
+/* Float cancel and signup buttons and add an equal width */
+
+.signupbtn {
+    float: left;
+    width: 50%;
+}
+
+/* Add padding to container elements */
+
+.container {
+    padding: 16px;
+}
+
+/* Clear floats */
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+
+@media screen and (max-width: 300px) {
+    .cancelbtn,
+    .signupbtn {
+        width: 100%;
+    }
+}
