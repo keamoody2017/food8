@@ -129,6 +129,7 @@
         }
 
         function visRestauranter() {
+            restauranter.sort(function(a, b){return 0.5 - Math.random()});
             restauranter.forEach(restaurant => {
                 console.log(restaurant)
                 let klon = template.cloneNode(true).content;

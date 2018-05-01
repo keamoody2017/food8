@@ -63,12 +63,28 @@
         </div>
     </nav>
 
+   <template>
+           <article>
+            <img class="mySlides" data-galleri src="" alt="">
+            </article>
+        </template>
+
     <section id="singlebutik_container">
         <article>
             <h2 data-header>---</h2>
             <img data-image src="---" alt="---">
             <a href="" data-menu></a>
             <p data-description>---</p>
+
+            <div id="galleri_container">
+
+
+            <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+            <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+
+
+        </div>
+
             <p data-aabningstider>---</p>
             <p data-kontakt>---</p>
             <p data-adresse>---</p>
@@ -90,7 +106,11 @@
         let urlID = urlParams.get('id');
 
         let jSonUrl = "http://ffeminister.dk/kea/2sem/food8/wp/wp-json/wp/v2/specialbutik";
+        let display = document.querySelector("#galleri_container");
         let specialButikker = [];
+        let galleri = [];
+        let galleriAlt = [];
+        let template = document.querySelector("template");
 
         document.addEventListener("DOMContentLoaded", hentJson);
 
@@ -101,7 +121,7 @@
             specialButikker = await jsonData.json();
             console.log(specialButikker);
             visSpecialbutikker();
-
+            visGalleri();
         }
 
         function visSpecialbutikker() {
@@ -114,18 +134,79 @@
                     document.querySelector("[data-header]").textContent = specialButik.title.rendered;
 
                     document.querySelector("[data-image]").src = specialButik.acf.coverbillede.url;
-                    //                klon.querySelector("[data-image]").alt = restaurant.afc.alt;
                     document.querySelector("[data-galleri]").src = specialButik.acf.galleri.url;
                     document.querySelector("[data-description]").innerHTML = specialButik.acf.beskrivelse;
                     document.querySelector("[data-aabningstider]").innerHTML = specialButik.acf.åbningstider;
                     document.querySelector("[data-kontakt]").innerHTML = specialButik.acf.kontakt;
                     document.querySelector("[data-adresse]").innerHTML = specialButik.acf.adresse;
                     document.querySelector("[data-kontrolrapport]").innerHTML = specialButik.acf.kontrolrapport;
-                    document.appendChild(klon);
+
+                    lavArray();
                 }
+
+                function lavArray() {
+                    if (specialButik.acf.galleri.url) {
+                        galleri.push(specialButik.acf.galleri.url);
+                        galleriAlt.push(specialButik.acf.galleri.alt);
+
+                        galleri.push(specialButik.acf.galleri2.url);
+                        galleriAlt.push(specialButik.acf.galleri2.alt);
+
+                        galleri.push(specialButik.acf.galleri3.url);
+                        galleriAlt.push(specialButik.acf.galleri3.alt);
+
+                        galleri.push(specialButik.acf.galleri4.url);
+                        galleriAlt.push(specialButik.acf.galleri4.alt);
+
+                        galleri.push(specialButik.acf.galleri5.url);
+                        galleriAlt.push(specialButik.acf.galleri5.alt);
+
+                        galleri.push(specialButik.acf.galleri6.url);
+                        galleriAlt.push(specialButik.acf.galleri6.alt);
+
+                        galleri.push(specialButik.acf.galleri7.url);
+                        galleriAlt.push(specialButik.acf.galleri7.alt);
+                    }
+                }
+
             });
 
         }
+
+        function visGalleri() {
+            galleri.forEach(billede => {
+                console.log(galleri);
+                let klon = template.cloneNode(true).content;
+                klon.querySelector("[data-galleri]").src = billede;
+                klon.querySelector("[data-galleri]").alt = billede.alt;
+                display.appendChild(klon);
+            });
+
+        }
+
+
+        var slideIndex = 1;
+        showDivs(slideIndex);
+
+        function plusDivs(n) {
+            showDivs(slideIndex += n);
+        }
+
+        function showDivs(n) {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            if (n > x.length) {
+                slideIndex = 1
+            }
+            if (n < 1) {
+                slideIndex = x.length
+            }
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            x[slideIndex - 1].style.display = "block";
+        }
+
     </script>
 
 </body>
