@@ -6,6 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Om Food8.dk</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        #map {
+            height: 100%;
+        }
+
+        /* Optional: Makes the sample page fill the window. */
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
 </head>
 
 <body>
@@ -63,210 +77,251 @@
         </div>
     </nav>
 
+
     <div id="map"></div>
-    <!-- Replace the value of the key parameter with your own API key. -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0Ozk0ov2k_1CXrjRfCwt8y_VUaWTQcso&callback=initMap">
-
-
-    </script>
 
 
     <script>
+        let map;
+
+        let centrum = {
+            lat: 55.669064,
+            //lat = latitude
+            lng: 12.558715
+            //lng = longitude
+        };
+
+        let restaurant1 = {
+            lat: 55.683928,
+            //lat = latitude
+            lng: 12.570082
+            //lng = longitude
+        };
+
+        let restaurant2 = {
+            lat: 55.669184,
+            //lat = latitude
+            lng: 12.560794
+            //lng = longitude
+        };
+
+        let restaurant3 = {
+            lat: 55.695038,
+            //lat = latitude
+            lng: 12.569340
+            //lng = longitude
+        };
+
+        let restaurant4 = {
+            lat: 55.683690,
+            //lat = latitude
+            lng: 12.569766
+            //lng = longitude
+        };
+
+        let restaurant5 = {
+            lat: 55.666611,
+            //lat = latitude
+            lng: 12.579911
+            //lng = longitude
+        };
+
+        let restaurant6 = {
+            lat: 55.667643,
+            //lat = latitude
+            lng: 12.558010
+            //lng = longitude
+        };
+
+        let restaurant7 = {
+            lat: 55.688250,
+            //lat = latitude
+            lng: 12.561815
+            //lng = longitude
+        };
+
+
+        //Hvad er forskellen mellem "var" og "map"? The difference is scoping. Funktion "var" is scoped to the nearest function block and let is scoped to the nearest enclosing block, which can be smaller than a function block. Both are global if outside any block. Also, variables declared with let are not accessible before they are declared in their enclosing block.As seen in the demo, this will throw a ReferenceError exception.
+
+
         function initMap() {
 
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 12,
-                center: {
-                    lat: 55.688250,
-                    lng: 12.561815
-                },
-
-                styles: [{
-                        "elementType": "labels",
-                        "stylers": [{
-                            "visibility": "off"
-                        }]
-                    },
-                    {
-                        "featureType": "administrative.land_parcel",
-                        "stylers": [{
-                            "visibility": "off"
-                        }]
-                    },
-                    {
-                        "featureType": "administrative.neighborhood",
-                        "stylers": [{
-                            "visibility": "off"
-                        }]
-                    },
-                    {
-                        "featureType": "landscape.man_made",
-                        "elementType": "geometry.fill",
-                        "stylers": [{
-                            "color": "#90dae2"
-                        }]
-                    },
-                    {
-                        "featureType": "landscape.natural",
-                        "elementType": "geometry.fill",
-                        "stylers": [{
-                            "color": "#a7dfcf"
-                        }]
-                    },
-                    {
-                        "featureType": "landscape.natural.landcover",
-                        "elementType": "geometry.fill",
-                        "stylers": [{
-                            "color": "#7fdcbf"
-                        }]
-                    },
-                    {
-                        "featureType": "landscape.natural.terrain",
-                        "elementType": "geometry.fill",
-                        "stylers": [{
-                            "color": "#90c5dc"
-                        }]
-                    },
-                    {
-                        "featureType": "poi",
-                        "elementType": "geometry.fill",
-                        "stylers": [{
-                            "color": "#8eedd2"
-                        }]
-                    },
-                    {
-                        "featureType": "poi",
-                        "elementType": "labels.text",
-                        "stylers": [{
-                            "visibility": "off"
-                        }]
-                    },
-                    {
-                        "featureType": "poi.business",
-                        "stylers": [{
-                            "visibility": "off"
-                        }]
-                    },
-                    {
-                        "featureType": "road",
-                        "elementType": "geometry.fill",
-                        "stylers": [{
-                            "color": "#f3f4ff"
-                        }]
-                    },
-                    {
-                        "featureType": "road",
-                        "elementType": "labels.icon",
-                        "stylers": [{
-                            "visibility": "off"
-                        }]
-                    },
-                    {
-                        "featureType": "road.highway",
-                        "elementType": "geometry.fill",
-                        "stylers": [{
-                            "color": "#f3f4ff"
-                        }]
-                    },
-                    {
-                        "featureType": "road.highway",
-                        "elementType": "geometry.stroke",
-                        "stylers": [{
-                            "color": "#f3f4ff"
-                        }]
-                    },
-                    {
-                        "featureType": "transit",
-                        "stylers": [{
-                            "visibility": "off"
-                        }]
-                    },
-                    {
-                        "featureType": "water",
-                        "elementType": "geometry.fill",
-                        "stylers": [{
-                            "color": "#e0eaee"
-                        }]
-                    }
-                ]
-
+            //Placering
+            let map = new google.maps.Map(document.getElementById('map'), {
+                center: centrum,
+                zoom: 13
             });
 
 
 
 
+            //----------Restaurant Fleisch------------
 
 
-            // Create an array of alphabetical characters used to label the markers.
-            var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            let markerCentrum = new google.maps.Marker({
+                position: centrum,
+                title: "Fleisch",
 
-            // Add some markers to the map.
-            // Note: The code uses the JavaScript Array.prototype.map() method to
-            // create an array of markers based on a given "locations" array.
-            // The map() method here has nothing to do with the Google Maps API.
-            var markers = locations.map(function(location, i) {
-                return new google.maps.Marker({
-                    position: location,
-                    label: labels[i % labels.length]
-                });
+                icon: "fleischmarker.png",
+                map: map
             });
 
-            // Add a marker clusterer to manage the markers.
-            var markerCluster = new MarkerClusterer(map, markers, {
-                imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+
+            //INFO-BOX
+            let infowindow0 = new google.maps.InfoWindow({
+                content: "<h2><p>Fleisch</p></h2><p>Byens bedste restaurant</p><br><p>Åbent hver dag</p>"
+
+
             });
+
+            markerCentrum.addListener("click", () => {
+                infowindow0.open(map, markerCentrum);
+            });
+            //----------Restaurant 1------------
+
+            //Un Mercato
+            let markerRestaurant1 = new google.maps.Marker({
+                position: restaurant1,
+                title: "restaurant",
+                icon: "unmercatomarker.png",
+                map: map
+            });
+
+
+            //INFO-BOX
+            let infowindow1 = new google.maps.InfoWindow({
+                content: "<h2>Un Mercato</h2><p>Un Mercato er et italiensk rotisserie, hvor porchetta og kyllinger bliver grillet på spyd i en stor rustik messinggrill med en væg af flammer. God mad med masser af smag er vores specialitet. Derfor har vi opkaldt det lille spisested efter vores nabolag, hvor kærligheden til det gode måltid er i centrum</br>Åbningstider<br>Mandag – søndag: 11.30-23.00</p>"
+
+            });
+
+            markerRestaurant1.addListener("click", () => {
+                infowindow1.open(map, markerRestaurant1);
+            });
+
+            //-----------------------
+
+            //Spisehuset
+            let markerRestaurant2 = new google.maps.Marker({
+                position: restaurant2,
+                title: "restaurant",
+                icon: "spisehusetmarker.png",
+                map: map
+            });
+
+
+            //INFO-BOX
+            let infowindow2 = new google.maps.InfoWindow({
+                content: "<h2>Spisehuset</h2><p>Spisehuset ligger under regnbuelys i den gemte grå kødby. Her driver vi en lille restaurant med tid og omtanke. Det gør vi ved at servere en fast fireretters menu, lavet af økologiske og biodynamiske råvarer fra lokale producenter.<br>Åbningstider<br>Tirsdag til onsdag: 18.00-22.00 (køkken åbent til 21.00)<br> Torsdag til  lørdag: 18.00-24.00 (køkken åbent til 22.30)</p>"
+
+            });
+
+            markerRestaurant2.addListener("click", () => {
+                infowindow2.open(map, markerRestaurant2);
+            });
+
+
+            //--------------  Metier
+            let markerRestaurant3 = new google.maps.Marker({
+                position: restaurant3,
+                title: "metier",
+                icon: "metiermarker.png",
+                map: map
+            });
+
+
+            //INFO-BOX
+            let infowindow3 = new google.maps.InfoWindow({
+                content: "<h2>Metier</h2><p>Metier er en bistro på Østerbro med en stærk passion for gode, lokale råvarer. Vi serverer jordnære og genkendelige måltider i uformelle rammer, og det er altafgørende for os, at vores mad tilgodeser både smagsoplevelsen og miljøet.</p><br>Tirsdag – lørdag: 15.00-23.00<br>Køkkenet har åbent kl. 17.30-21.30"
+
+            });
+
+            markerRestaurant3.addListener("click", () => {
+                infowindow3.open(map, markerRestaurant3);
+            });
+
+
+            //-------Cleavers
+            let markerRestaurant4 = new google.maps.Marker({
+                position: restaurant4,
+                title: "restaurant",
+                icon: "cleaversmarker.png",
+                map: map
+            });
+
+
+            //INFO-BOX
+            let infowindow4 = new google.maps.InfoWindow({
+                content: "<h2>Cleaver's Slagter</h2><p>Cleaver’s Meat Market er gourmetslagteren i Torvehallerne. Hos os finder du alt det bedste fra lammet, oksen, kalven, grisen, anden og kyllingen – side om side med håndlavede delikatesser som pølser og porchetta.<br><br>Åbningstider</br>Mandag – torsdag: 10.00 – 19.00<br>Fredag: 10.00 – 20.00.<br>Lørdag: 10.00 – 18.00.<br>Søndag: 11.00 – 17.00.</p>"
+
+            });
+
+            markerRestaurant4.addListener("click", () => {
+                infowindow4.open(map, markerRestaurant4);
+            });
+
+            //-------The Fat Pike
+            let markerRestaurant5 = new google.maps.Marker({
+                position: restaurant5,
+                title: "restaurant",
+                icon: "thefatpike.png",
+                scaledSize: new google.maps.Size(25, 25),
+                map: map
+            });
+
+
+            //INFO-BOX
+            let infowindow5 = new google.maps.InfoWindow({
+                content: "<h2>The Fat Pike</h2><p>Med omhu og kærlighed præsenterer vi fisk og skaldyr på en simpel, ærlig og inspirerende måde. Vi gør op med, at fisk er noget ‘fint’, som skal serveres i små mængder. Vi synes nemlig, at havets lækre råvarer bør indtages i rigelige mængder<br>Alle ugens dage:<br>Kl. 16:00-00:00</p>"
+
+            });
+
+            markerRestaurant5.addListener("click", () => {
+                infowindow5.open(map, markerRestaurant5);
+            });
+            //-------NoHo
+            let markerRestaurant6 = new google.maps.Marker({
+                position: restaurant6,
+                title: "NoHo",
+                icon: "nohomarker.png",
+                map: map
+            });
+
+
+            //INFO-BOX
+            let infowindow6 = new google.maps.InfoWindow({
+                content: "<h2>NoHo</h2><p>Kærlighed, god musik, fantastisk mad og lækre cocktails. </p>"
+
+            });
+
+            markerRestaurant6.addListener("click", () => {
+                infowindow6.open(map, markerRestaurant6);
+            });
+
+            //-------Rødder og vin
+            let markerRestaurant7 = new google.maps.Marker({
+                position: restaurant7,
+                title: "restaurant",
+                icon: "vinmarker.png",
+                size: new google.maps.Size(71, 71),
+                map: map
+            });
+
+
+            //INFO-BOX
+            let infowindow7 = new google.maps.InfoWindow({
+                content: "<h2>Rødder og Vin</h2><p>Byens bedste leverandør af vin<br>Åbningstider<br>Tirsdag – lørdag: 11 .00- 17.00.</p>"
+
+            });
+
+            markerRestaurant7.addListener("click", () => {
+                infowindow7.open(map, markerRestaurant7);
+            });
+
+
+
         }
-        var locations = [{
-                lat: 55.669064,
-                lng: 12.558715
-            },
-            {
-                lat: 55.683928,
-                lng: 12.570082
-            },
-            {
-                lat: 55.669184,
-                lng: 12.560794
-            },
-            {
-                lat: 55.695038,
-                lng: 12.569340
-            },
-            {
-                lat: 55.683690,
-                lng: 12.569766
-            },
-            {
-                lat: 55.666611,
-                lng: 12.579911
-            },
-            {
-                lat: 55.667643,
-                lng: 12.558010
-            },
-            {
-                lat: 55.688250,
-                lng: 12.561815
-            }
-        ];
-
     </script>
-    <style>
-        #map {
-            height: 100%;
-        }
-
-        /* Optional: Makes the sample page fill the window. */
-
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-
-    </style>
-    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_VXXKgHjMxQjCMAScnKpyZ6fso7YN20c&callback=initMap" type="text/javascript"></script>
 
 </body>
 
