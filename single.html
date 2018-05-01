@@ -58,17 +58,33 @@
         </div>
     </nav>
 
+   <template>
+           <article>
+            <img class="mySlides" data-galleri src="" alt="">
+            </article>
+        </template>
+
     <p data-beskrivelse></p>
 
     <section id="singlemenu_container">
         <img data-image src="" alt="">
         <h2 data-header class="singleoverskrift"></h2>
-        <details open>
+        <details closed>
             <summary>
                 Om stedet
             </summary>
             <p data-description></p>
         </details>
+
+        <div id="galleri_container">
+
+
+            <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+            <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+
+
+        </div>
+
         <a href="" data-menu>
             <p id="semenuher">Se vores Menukort her</p>
         </a>
@@ -99,7 +115,10 @@
 
         let jsonUrl = "http://ffeminister.dk/kea/2sem/food8/wp/wp-json/wp/v2/restaurant";
         let steder = [];
-
+        let galleri = [];
+        let galleriAlt = [];
+        let template = document.querySelector("template");
+        let display = document.querySelector("#galleri_container");
 
         document.addEventListener("DOMContentLoaded", hentJson);
 
@@ -108,7 +127,7 @@
             steder = await dataJson.json();
             console.log(steder);
             visSteder();
-
+            visGalleri();
         }
 
         function visSteder() {
@@ -132,12 +151,73 @@
 
                     document.querySelector("[data-kontakt]").innerHTML = sted.acf.kontakt;
 
-
-
                     document.querySelector("[data-kontrolrapport]").innerHTML = sted.acf.kontrolrapport;
+
+                    lavArray();
                 }
+
+                function lavArray() {
+                    if (sted.acf.galleri.url) {
+                        galleri.push(sted.acf.galleri.url);
+                        galleriAlt.push(sted.acf.galleri.alt);
+
+                        galleri.push(sted.acf.galleri2.url);
+                        galleriAlt.push(sted.acf.galleri2.alt);
+
+                        galleri.push(sted.acf.galleri3.url);
+                        galleriAlt.push(sted.acf.galleri3.alt);
+
+                        galleri.push(sted.acf.galleri4.url);
+                        galleriAlt.push(sted.acf.galleri4.alt);
+
+                        galleri.push(sted.acf.galleri5.url);
+                        galleriAlt.push(sted.acf.galleri5.alt);
+
+                        galleri.push(sted.acf.galleri6.url);
+                        galleriAlt.push(sted.acf.galleri6.alt);
+
+                        galleri.push(sted.acf.galleri7.url);
+                        galleriAlt.push(sted.acf.galleri7.alt);
+                    }
+                }
+
             });
         }
+
+        function visGalleri() {
+            galleri.forEach(billede => {
+                console.log(galleri);
+                let klon = template.cloneNode(true).content;
+                klon.querySelector("[data-galleri]").src = billede;
+                klon.querySelector("[data-galleri]").alt = billede.alt;
+                display.appendChild(klon);
+            });
+
+        }
+
+
+        var slideIndex = 1;
+        showDivs(slideIndex);
+
+        function plusDivs(n) {
+            showDivs(slideIndex += n);
+        }
+
+        function showDivs(n) {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            if (n > x.length) {
+                slideIndex = 1
+            }
+            if (n < 1) {
+                slideIndex = x.length
+            }
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            x[slideIndex - 1].style.display = "block";
+        }
+
     </script>
 </body>
 
