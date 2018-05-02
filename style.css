@@ -70,11 +70,9 @@ h2nav {
 
 #nyheder {
     font-family: groteskSemiBold;
-    text-align: center;
-    color: #F5F0E4;
+    margin: 0 auto;
     font-size: 15px;
     line-height: 0.5;
-    position: absolute;
     cursor: pointer;
 }
 
