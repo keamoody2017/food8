@@ -63,7 +63,7 @@
         </div>
     </nav>
 
-   <template>
+    <template>
            <article>
             <img class="mySlides" data-galleri src="" alt="">
             </article>
@@ -79,11 +79,11 @@
             <div id="galleri_container">
 
 
-            <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
-            <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+                <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+                <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
 
 
-        </div>
+            </div>
 
             <p data-aabningstider></p>
             <p data-kontakt></p>
@@ -99,7 +99,21 @@
         </div>
     </a>
 
-    <footer></footer>
+    <footer>
+        <a href="https://www.facebook.com/food8dk/">
+            <div id="faceicon"></div>
+        </a>
+        <a href="">
+            <div id="instaicon"></div>
+        </a>
+
+        <a href="http://stromworks.com/">
+            <div id="stromicon"></div>
+        </a>
+
+
+
+    </footer>
 
     <script>
         let urlParams = new URLSearchParams(window.location.search);
@@ -206,7 +220,6 @@
             }
             x[slideIndex - 1].style.display = "block";
         }
-
     </script>
 
 </body>
