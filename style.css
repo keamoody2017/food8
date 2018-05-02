@@ -219,8 +219,16 @@ img {
     margin-top: 15%;
 }
 
+#start {
+    height: 70%;
+    width: 100%;
+    cursor: pointer;
 
+}
 
+#intro img {
+    margin-top: 0%;
+}
 
 
 
