@@ -69,9 +69,10 @@
     <template>
         <article>
 
-                       <h2 data-header></h2>
+
 
             <img data-image src="---" alt="---">
+            <h2 data-header></h2>
             <a href="" data-menu></a>
             <p data-description></p>
             <p data-aabningstider></p>
@@ -125,7 +126,9 @@
         }
 
         function visRestauranter() {
-            restauranter.sort(function(a, b){return 0.5 - Math.random()});
+            restauranter.sort(function(a, b) {
+                return 0.5 - Math.random()
+            });
             restauranter.forEach(restaurant => {
                 console.log(restaurant)
                 let klon = template.cloneNode(true).content;
